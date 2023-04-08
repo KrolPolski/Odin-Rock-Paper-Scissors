@@ -1,6 +1,7 @@
 // define choices
-const choices = ["Rock", "Paper", "Scissors"];
+const choices = ["rock", "paper", "scissors"];
 
+console.log("Welcome to Rock Paper Scissors!")
 // Get the choice from the computer
 
 function getComputerChoice()
@@ -15,7 +16,21 @@ function getComputerChoice()
 getComputerChoice();
 
 // get the choice from the user
+function getPlayerChoice()
+{
+    playerChoice = prompt("Please choose rock, paper or scissors").toLowerCase();
+    if (playerChoice === "rock" || playerChoice === "scissors" || playerChoice === "paper")
+    {
+        console.log(playerChoice);
+        return playerChoice;
+    }
+    else {
+        console.log("That isn't a valid choice. Try again");
+        getPlayerChoice();
+        }
+}
 
+getPlayerChoice();
 // resolve who wins
 // report who wins to the user
 // update score so far
