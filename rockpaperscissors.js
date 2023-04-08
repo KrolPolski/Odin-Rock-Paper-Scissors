@@ -42,7 +42,7 @@ function resolveRound(playerChoice, computerChoice)
 
     if (playerChoice === computerChoice)
     {
-        roundOutcome === "tie";
+        roundOutcome = "tie";
         console.log("You both chose " + playerChoice + ", so it is a tie.");
         return roundOutcome;
     }
@@ -61,7 +61,7 @@ function resolveRound(playerChoice, computerChoice)
                         roundOutcome = "defeat";
                         break;
                 }
-                return roundOutcome;
+            return roundOutcome;
             break;
         case 'scissors':
             switch (computerChoice)
@@ -92,6 +92,7 @@ function resolveRound(playerChoice, computerChoice)
 
                 }
         return roundOutcome;
+        break;
         
     }   
 }
@@ -149,6 +150,13 @@ function game()
 // actual execution of functions
 game();
 
+if (matchScore[0] > matchScore[1])
+{
+    console.log("Congratulations on winning the match!");
+}
+else {
+    console.log("better luck next time");
+}
 
 // determine if there should be a new round or if the game has ended
 // Once game has ended, declare winner and score
