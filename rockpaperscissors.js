@@ -2,6 +2,9 @@
 const choices = ["rock", "paper", "scissors"];
 let computerChoice;
 let playerChoice;
+let roundOutcome;
+let matchScore = [0,0];
+
 console.log("Welcome to Rock Paper Scissors!")
 // Get the choice from the computer
 
@@ -14,8 +17,6 @@ function getComputerChoice()
    // console.log(randomNumber);
    // console.log(choices[randomNumber]);
 }
-
-getComputerChoice();
 
 // get the choice from the user
 function getPlayerChoice()
@@ -32,8 +33,8 @@ function getPlayerChoice()
         }
 }
 
-getPlayerChoice();
-// resolve who wins
+
+// resolve who wins the round
 
 function resolveRound(playerChoice, computerChoice)
 {
@@ -60,6 +61,7 @@ function resolveRound(playerChoice, computerChoice)
                         roundOutcome = "defeat";
                         break;
                 }
+                return roundOutcome;
             break;
         case 'scissors':
             switch (computerChoice)
@@ -74,6 +76,7 @@ function resolveRound(playerChoice, computerChoice)
                         break;
                        
                 }
+            return roundOutcome;
             break;     
         case 'paper':
             switch (computerChoice)
@@ -86,14 +89,67 @@ function resolveRound(playerChoice, computerChoice)
                         console.log("Scissors cuts paper, you lose!");
                         roundOutcome = "defeat";
                         break;
+
                 }
-            break;
+        return roundOutcome;
+        
     }   
 }
 
-resolveRound(playerChoice, computerChoice)
-// report who wins to the user
 // update score so far
+function updateScore(roundOutcome)
+{
+    if (roundOutcome === "victory")
+    {
+        matchScore[0] = matchScore[0] + 1;
+        let reportScore = "The score is now " + matchScore[0] + "-" + matchScore[1];
+        console.log(reportScore);
+    }
+    else if(roundOutcome === "defeat") 
+    {
+        matchScore[1] = matchScore[1] + 1;
+        let reportScore = "The score is now " + matchScore[0] + "-" + matchScore[1];
+        console.log(reportScore);
+    }
+    else if(roundOutcome === "tie")
+    {
+        let reportScore = "The score remains " + matchScore[0] + "-" + matchScore[1];
+        console.log(reportScore);
+    }
+    else
+    {
+        console.warn("Something broke with scoring");
+    }
+
+}
+function game()
+{
+    getComputerChoice();
+    getPlayerChoice();
+    updateScore(resolveRound(playerChoice, computerChoice));
+    
+
+    getComputerChoice();
+    getPlayerChoice();
+    updateScore(resolveRound(playerChoice, computerChoice));
+
+    getComputerChoice();
+    getPlayerChoice();
+    updateScore(resolveRound(playerChoice, computerChoice));
+
+    getComputerChoice();
+    getPlayerChoice();
+    updateScore(resolveRound(playerChoice, computerChoice));
+
+    getComputerChoice();
+    getPlayerChoice();
+    updateScore(resolveRound(playerChoice, computerChoice));
+
+}
+// actual execution of functions
+game();
+
+
 // determine if there should be a new round or if the game has ended
 // Once game has ended, declare winner and score
 // offer to play again
