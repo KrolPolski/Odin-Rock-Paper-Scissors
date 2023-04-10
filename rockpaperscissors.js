@@ -5,6 +5,7 @@ let playerChoice;
 let roundOutcome;
 let matchScore = [0,0];
 
+const divResults = document.querySelector("#results");
 console.log("Welcome to Rock Paper Scissors!")
 // Get the choice from the computer
 
@@ -25,7 +26,10 @@ function getPlayerChoice(btnChoice)
    // playerChoice = prompt("Please choose rock, paper or scissors").toLowerCase();
     /*if (playerChoice === "rock" || playerChoice === "scissors" || playerChoice === "paper")*/
     {
-        console.log(playerChoice);
+      //  console.log(playerChoice);
+        const playerChoiceReport = document.createElement('p');
+        playerChoiceReport.textContent = "You have chosen: " + playerChoice;
+        divResults.appendChild(playerChoiceReport);
         return playerChoice;
     }
     /* else {
@@ -40,11 +44,15 @@ function getPlayerChoice(btnChoice)
 function resolveRound(playerChoice, computerChoice)
 {
     let roundOutcome;
+    const roundOutcomeReport = document.createElement('p');
 
     if (playerChoice === computerChoice)
     {
         roundOutcome = "tie";
-        console.log("You both chose " + playerChoice + ", so it is a tie.");
+        // console.log("You both chose " + playerChoice + ", so it is a tie.");
+        
+        roundOutcomeReport.textContent = "You both chose " + playerChoice + ", so it is a tie.";
+        divResults.appendChild(roundOutcomeReport);
         return roundOutcome;
     }
     else switch (playerChoice) 
@@ -53,13 +61,18 @@ function resolveRound(playerChoice, computerChoice)
             switch (computerChoice) 
                 {
                     case 'scissors':
-                        console.log("Rock crushes scissors, so you win!");
+                        
+                       // console.log("Rock crushes scissors, so you win!");
                         roundOutcome = "victory";
+                        roundOutcomeReport.textContent = "Rock crushes scissors, so you win!";
+                        divResults.appendChild(roundOutcomeReport);
                         break;
                         
                     case 'paper':
-                        console.log("Paper covers rock, so you lose!");
+                        //console.log("Paper covers rock, so you lose!");
                         roundOutcome = "defeat";
+                        roundOutcomeReport.textContent = "Paper covers rock, so you lose!";
+                        divResults.appendChild(roundOutcomeReport);
                         break;
                 }
             return roundOutcome;
@@ -68,12 +81,16 @@ function resolveRound(playerChoice, computerChoice)
             switch (computerChoice)
                 {
                     case 'rock':
-                        console.log("Rock crushes scissors, you lose!");
+                        //console.log("Rock crushes scissors, you lose!");
                         roundOutcome = "defeat";
+                        roundOutcomeReport.textContent = "Rock crushes scissors, you lose!";
+                        divResults.appendChild(roundOutcomeReport);
                         break;
                     case 'paper':
                         console.log("Scissors cuts paper, you win!");
                         roundOutcome = "victory";
+                        roundOutcomeReport.textContent = "Scissors cuts paper, you win!";
+                        divResults.appendChild(roundOutcomeReport);
                         break;
                        
                 }
@@ -83,12 +100,17 @@ function resolveRound(playerChoice, computerChoice)
             switch (computerChoice)
                 {
                     case 'rock':
-                        console.log("Paper covers rock, you win!");
+                        //console.log("Paper covers rock, you win!");
                         roundOutcome = "victory";
+                        roundOutcomeReport.textContent = "Paper covers rock, you win!";
+                        divResults.appendChild(roundOutcomeReport);
                         break;
                     case 'scissors':
-                        console.log("Scissors cuts paper, you lose!");
+                        //console.log("Scissors cuts paper, you lose!");
                         roundOutcome = "defeat";
+                        roundOutcomeReport.textContent = "Scissors cuts paper, you lose!";
+                        divResults.appendChild(roundOutcomeReport);
+                        
                         break;
 
                 }
