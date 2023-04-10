@@ -5,7 +5,7 @@ let playerChoice;
 let roundOutcome;
 let matchScore = [0,0];
 const matchScoreReport = document.querySelector('#MatchScoreReport');
-
+let roundsPlayed = 0;
 const divResults = document.querySelector("#results");
 console.log("Welcome to Rock Paper Scissors!")
 // Get the choice from the computer
@@ -157,10 +157,19 @@ function updateScore(roundOutcome)
 }
 function game()
 {
+    
     getComputerChoice();
     
     updateScore(resolveRound(playerChoice, computerChoice));
-    
+    roundsPlayed++;
+    console.log(roundsPlayed);
+
+    if (roundsPlayed === 5)
+    {
+        finalReport();
+        roundsPlayed = 0;
+    }
+
    // getComputerChoice();
     
     //getPlayerChoice();
@@ -208,13 +217,21 @@ btnScissors.addEventListener('click', function()
 
 function finalReport()
     {
-
+    const matchOutcomeReport = document.createElement('p');
 if (matchScore[0] > matchScore[1])
 {
-    console.log("Congratulations on winning the match!");
+    //console.log("Congratulations on winning the match!");
+    matchOutcomeReport.textContent = "Congratulations on winning the match!";
+    divResults.innerHTML = "";
+    matchScoreReport.prepend(matchOutcomeReport);
+    matchScore = [0,0];
 }
 else {
-    console.log("better luck next time");
+    //console.log("better luck next time");
+    matchOutcomeReport.textContent = "You lost! Better luck next time";
+    divResults.innerHTML = "";
+    matchScoreReport.prepend(matchOutcomeReport);
+    matchScore = [0,0];
 }
 }
 // determine if there should be a new round or if the game has ended
