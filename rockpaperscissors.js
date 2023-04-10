@@ -19,18 +19,19 @@ function getComputerChoice()
 }
 
 // get the choice from the user
-function getPlayerChoice()
+function getPlayerChoice(btnChoice)
 {
-    playerChoice = prompt("Please choose rock, paper or scissors").toLowerCase();
-    if (playerChoice === "rock" || playerChoice === "scissors" || playerChoice === "paper")
+    playerChoice = btnChoice;
+   // playerChoice = prompt("Please choose rock, paper or scissors").toLowerCase();
+    /*if (playerChoice === "rock" || playerChoice === "scissors" || playerChoice === "paper")*/
     {
         console.log(playerChoice);
         return playerChoice;
     }
-    else {
+    /* else {
         console.log("That isn't a valid choice. Try again");
         getPlayerChoice();
-        }
+        } */
 }
 
 
@@ -126,10 +127,14 @@ function updateScore(roundOutcome)
 function game()
 {
     getComputerChoice();
-    getPlayerChoice();
-    updateScore(resolveRound(playerChoice, computerChoice));
     
-
+    resolveRound(playerChoice, computerChoice);
+   // getComputerChoice();
+    
+    //getPlayerChoice();
+    //updateScore(resolveRound(playerChoice, computerChoice));
+    
+/*
     getComputerChoice();
     getPlayerChoice();
     updateScore(resolveRound(playerChoice, computerChoice));
@@ -145,10 +150,32 @@ function game()
     getComputerChoice();
     getPlayerChoice();
     updateScore(resolveRound(playerChoice, computerChoice));
-
+*/
 }
+// fetch buttons and listen for click events
+const btnRock = document.querySelector("#BtnRock");
+btnRock.addEventListener('click', function()
+{
+    getPlayerChoice("rock");
+    game();
+});
+const btnPaper = document.querySelector("#BtnPaper");
+btnPaper.addEventListener('click', function()
+{
+    getPlayerChoice("paper")
+    game();
+});
+const btnScissors = document.querySelector("#BtnScissors");
+btnScissors.addEventListener('click', function()
+{
+    getPlayerChoice("scissors")
+    game();
+});
 // actual execution of functions
-game();
+//game();
+
+function finalReport()
+    {
 
 if (matchScore[0] > matchScore[1])
 {
@@ -157,7 +184,7 @@ if (matchScore[0] > matchScore[1])
 else {
     console.log("better luck next time");
 }
-
+}
 // determine if there should be a new round or if the game has ended
 // Once game has ended, declare winner and score
 // offer to play again
