@@ -4,6 +4,7 @@ let computerChoice;
 let playerChoice;
 let roundOutcome;
 let matchScore = [0,0];
+const matchScoreReport = document.querySelector('#MatchScoreReport');
 
 const divResults = document.querySelector("#results");
 console.log("Welcome to Rock Paper Scissors!")
@@ -29,7 +30,7 @@ function getPlayerChoice(btnChoice)
       //  console.log(playerChoice);
         const playerChoiceReport = document.createElement('p');
         playerChoiceReport.textContent = "You have chosen: " + playerChoice;
-        divResults.appendChild(playerChoiceReport);
+        divResults.prepend(playerChoiceReport);
         return playerChoice;
     }
     /* else {
@@ -52,7 +53,7 @@ function resolveRound(playerChoice, computerChoice)
         // console.log("You both chose " + playerChoice + ", so it is a tie.");
         
         roundOutcomeReport.textContent = "You both chose " + playerChoice + ", so it is a tie.";
-        divResults.appendChild(roundOutcomeReport);
+        divResults.prepend(roundOutcomeReport);
         return roundOutcome;
     }
     else switch (playerChoice) 
@@ -65,14 +66,14 @@ function resolveRound(playerChoice, computerChoice)
                        // console.log("Rock crushes scissors, so you win!");
                         roundOutcome = "victory";
                         roundOutcomeReport.textContent = "Rock crushes scissors, so you win!";
-                        divResults.appendChild(roundOutcomeReport);
+                        divResults.prepend(roundOutcomeReport);
                         break;
                         
                     case 'paper':
                         //console.log("Paper covers rock, so you lose!");
                         roundOutcome = "defeat";
                         roundOutcomeReport.textContent = "Paper covers rock, so you lose!";
-                        divResults.appendChild(roundOutcomeReport);
+                        divResults.prepend(roundOutcomeReport);
                         break;
                 }
             return roundOutcome;
@@ -84,13 +85,13 @@ function resolveRound(playerChoice, computerChoice)
                         //console.log("Rock crushes scissors, you lose!");
                         roundOutcome = "defeat";
                         roundOutcomeReport.textContent = "Rock crushes scissors, you lose!";
-                        divResults.appendChild(roundOutcomeReport);
+                        divResults.prepend(roundOutcomeReport);
                         break;
                     case 'paper':
-                        console.log("Scissors cuts paper, you win!");
+                      //  console.log("Scissors cuts paper, you win!");
                         roundOutcome = "victory";
                         roundOutcomeReport.textContent = "Scissors cuts paper, you win!";
-                        divResults.appendChild(roundOutcomeReport);
+                        divResults.prepend(roundOutcomeReport);
                         break;
                        
                 }
@@ -103,13 +104,13 @@ function resolveRound(playerChoice, computerChoice)
                         //console.log("Paper covers rock, you win!");
                         roundOutcome = "victory";
                         roundOutcomeReport.textContent = "Paper covers rock, you win!";
-                        divResults.appendChild(roundOutcomeReport);
+                        divResults.prepend(roundOutcomeReport);
                         break;
                     case 'scissors':
                         //console.log("Scissors cuts paper, you lose!");
                         roundOutcome = "defeat";
                         roundOutcomeReport.textContent = "Scissors cuts paper, you lose!";
-                        divResults.appendChild(roundOutcomeReport);
+                        divResults.prepend(roundOutcomeReport);
                         
                         break;
 
@@ -127,18 +128,26 @@ function updateScore(roundOutcome)
     {
         matchScore[0] = matchScore[0] + 1;
         let reportScore = "The score is now " + matchScore[0] + "-" + matchScore[1];
-        console.log(reportScore);
+       // console.log(reportScore);
+        matchScoreReport.textContent = reportScore;
+        
     }
     else if(roundOutcome === "defeat") 
     {
         matchScore[1] = matchScore[1] + 1;
         let reportScore = "The score is now " + matchScore[0] + "-" + matchScore[1];
-        console.log(reportScore);
+        //console.log(reportScore);
+       
+        matchScoreReport.textContent = reportScore;
+       
     }
     else if(roundOutcome === "tie")
     {
         let reportScore = "The score remains " + matchScore[0] + "-" + matchScore[1];
-        console.log(reportScore);
+        //console.log(reportScore);
+        
+        matchScoreReport.textContent = reportScore;
+        
     }
     else
     {
@@ -150,7 +159,8 @@ function game()
 {
     getComputerChoice();
     
-    resolveRound(playerChoice, computerChoice);
+    updateScore(resolveRound(playerChoice, computerChoice));
+    
    // getComputerChoice();
     
     //getPlayerChoice();
